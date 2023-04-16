@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmed Order Detail{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>Confirmed Order Detai</h1>
+
+
+
+    <div class="row">
+        <div class="col-md-6" >
+
+
+
+            <form class='form-horizontal' action="" >
+            {% csrf_token %}
+                 <div class="row">
+                <div class="col-md-4 text-right"><span>Ride owner:</span></div>
+                <div class="col-md-8 text-left">{{d_detail.owner.name}}</div>
+            </div>
+             <div class="row">
+                <div class="col-md-4 text-right"><span>Destination:</span></div>
+                <div class="col-md-8 text-left">{{d_detail.destination}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>Arrival_time:</span></div>
+                <div class="col-md-8 text-left">{{d_detail.arrival_time}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>Number of Passengers:</span></div>
+                <div class="col-md-8 text-left">{{d_detail.capacity}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>Is share:</span></div>
+                <div class="col-md-8 text-left">{{d_detail.is_Share}}</div>
+            </div>
+                <div class="row">
+                <div class="col-md-4 text-right"><span>Vehicle Type:</span></div>
+                <div class="col-md-8 text-left">{{d_detail.vehicle_type}}</div>
+            </div>
+                <div class="row">
+                <div class="col-md-4 text-right"><span>Special Request:</span></div>
+                <div class="col-md-8 text-left">{{d_detail.special_request}}</div>
+            </div>
+            </form>
+
+
+                {% if d_detail.status == 'confirmed' %}
+                     <form class='form-horizontal' action="/ride/d_list/complete/{{d_detail.id}}/" method="post">
+                     {% csrf_token %}
+     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                   <button type="submit" class="btn btn-primary " name="becomplete" >Mark Complete</button>
+                </div>
+                     </form>
+                     {% elif d_detail.status == 'open' %}
+                     <form class='form-horizontal' action="/ride/d_list/confirm/{{d_detail.id}}/" method="post">
+                     {% csrf_token %}
+               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                   <button type="submit" class="btn btn-primary " name="beconfirmed" >Mark Confirmed</button>
+                </div>
+                     </form>
+
+
+                 {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

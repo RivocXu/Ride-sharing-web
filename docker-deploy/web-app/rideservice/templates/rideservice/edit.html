@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Edit Info{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>Edit Info</h1>
+    <div class="row">
+        <div class="col-md-20 col-md-offset-6">
+            <form class='form-login' action="/ride/edit/" method="post">
+            {% csrf_token %}
+
+                <h2 class="text-center">Welcome Edit</h2>
+               <div class="form-group">
+                    {{ edit.name.label_tag }}
+                   {{ edit.name}}
+                </div>
+                <div class="form-group">
+                    {{ edit.email.label_tag }}
+                    {{ edit.email }}
+                </div>
+
+                <div class="form-group">
+
+                  {{ edit.sex.label_tag }}
+                  {{ edit.sex }}
+                </div>
+
+
+
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                   <button type="reset" class="btn btn-success me-md-2">Reset</button>
+                   <button type="submit" class="btn btn-primary ">Commit</button>
+                </div>
+
+        </form>
+
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

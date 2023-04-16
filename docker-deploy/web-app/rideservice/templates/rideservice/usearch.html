@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Search Rides{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-20 col-md-offset-6">
+          <form class='form-login' action="/ride/u_search/" method="post">
+              {% csrf_token %}
+              <h2 class="text-center">User Ride Search</h2>
+              <div class="form-group">
+                  {{ US_form.destination.label_tag }}
+                  {{ US_form.destination}}
+              </div>
+              <div class="form-group">
+                {{ US_form.early_time.label_tag }}
+                {{ US_form.early_time}}
+            </div>
+            <div class="form-group">
+                {{ US_form.late_time.label_tag }}
+                {{ US_form.late_time}}
+            </div>
+            <div class="form-group">
+                {{ US_form.number_you.label_tag }}
+                {{ US_form.number_you}}
+            </div>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                   <button type="reset" class="btn btn-success me-md-2">Reset</button>
+                   <button type="submit" class="btn btn-primary ">Commit</button>
+                </div>
+          </form>
+        </div>
+    </div>
+{% endblock %}

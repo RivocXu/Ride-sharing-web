@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}User Ride List{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>Ride as owner</h1>
+     {% for u_owner_item in u_owner_list %}
+        <div class="list-group">
+          <a href="/ride/u_list/{{ u_owner_item.id }}/" class="list-group-item list-group-item-action">Destination:{{ u_owner_item.destination }} Status:{{ u_owner_item.status }}</a>
+        </div>
+     {% endfor %}
+    <h1>Ride as sharer</h1>
+     {% for u_sharer_item in u_sharer_list %}
+        <div class="list-group">
+          <a href="/ride/u_list/{{ u_sharer_item.id }}/" class="list-group-item list-group-item-action">Destination:{{ u_sharer_item.destination }} Status:{{ u_sharer_item.status }}</a>
+        </div>
+     {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}To be Driver{% endblock %}
+
+{% block content %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+
+      <div class="container">
+        <div class="col-md-20 col-md-offset-6">
+          <form class='form-login' action="/ride/bedriver/" method="post">
+              {% csrf_token %}
+
+
+
+              <h2 class="text-center">To be Driver</h2>
+               <div class="form-group">
+                    {{ be_drive.type.label_tag }}
+                   {{ be_drive.type}}
+                </div>
+                <div class="form-group">
+                    {{ be_drive.license_num.label_tag }}
+                    {{ be_drive.license_num }}
+                </div>
+                <div class="form-group">
+                    {{ be_drive.capacity.label_tag }}
+                   {{ be_drive.capacity}}
+                </div>
+                <div class="form-group">
+                    {{ be_drive.otherInfo.label_tag }}
+                    {{ be_drive.otherInfo }}
+                </div>
+
+
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                   <button type="reset" class="btn btn-success me-md-2">Reset</button>
+                   <button type="submit" class="btn btn-primary ">Commit</button>
+                </div>
+          </form>
+        </div>
+    </div> <!-- /container -->
+
+
+
+{% endblock %}

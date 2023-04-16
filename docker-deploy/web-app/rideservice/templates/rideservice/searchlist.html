@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}User Searching Result{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>Result</h1>
+     {% for u_detail in u_list %}
+        <div class="row">
+            <div class="col-md-4 text-right"><span>Owner:</span></div>
+            <div class="col-md-8 text-left">{{u_detail.owner.name}}</div>
+        </div>
+        <div class="row">
+
+            {% for s in u_detail.sharer.all %}
+                <div class="col-md-4 text-right"><span>Sharer:</span></div>
+                <div class="col-md-8 text-left">{{s.name}}</div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-right"><span>Destination:</span></div>
+            <div class="col-md-8 text-left">{{u_detail.destination}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-right"><span>Arrival time:</span></div>
+            <div class="col-md-8 text-left">{{u_detail.arrival_time}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-right"><span>Number of passengers:</span></div>
+            <div class="col-md-8 text-left">{{u_detail.capacity}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-right"><span>is_Share:</span></div>
+            <div class="col-md-8 text-left">{{u_detail.is_Share}}</div>
+        </div>
+            <div class="row">
+            <div class="col-md-4 text-right"><span>Vehicle type:</span></div>
+            <div class="col-md-8 text-left">{{u_detail.vehicle_type}}</div>
+        </div>
+            <div class="row">
+            <div class="col-md-4 text-right"><span>Special request:</span></div>
+            <div class="col-md-8 text-left">{{u_detail.special_request}}</div>
+        </div>
+        {% if u_detail.status == 'open' %}
+            <form class='form-horizontal' action="/ride/u_search/join/{{u_detail.id}}/{{ number_you}}/" method="post">
+                {% csrf_token %}
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary " name="join" >Join</button>
+                </div>
+            </form>
+        {% endif %}
+     {% endfor %}
+</div>
+{% endblock %}

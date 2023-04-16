@@ -1,0 +1,105 @@
+
+{#login/templates/login/index.html#}
+
+{% extends 'base.html' %}
+{% block title %}Home page{% endblock %}
+
+
+{% block nagigate_bar %}
+     {% if my.is_driver %}
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">My</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/ride/my">My info</a></li>
+              <li><a class="dropdown-item" href="/ride/edit">Edit My</a></li>
+              <li><a class="dropdown-item" href="/ride/editcar">Edit Car</a></li>
+
+            </ul>
+          </li>
+
+
+
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Driver Operation</a>
+            <ul class="dropdown-menu">
+
+            <form class='form-horizontal' action="/ride/my/" method="post">
+                {% csrf_token %}
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                           <button type="submit" class="btn btn-primary " name="bepure" >Be pure user</button>
+                        </div>
+                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                           <button type="submit" class="btn btn-primary " name="confirmed_list" >Confirmed Order</button>
+                        </div>
+                          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                           <button type="submit" class="btn btn-primary " name="d_search_list" >Search Open Ride</button>
+                        </div>
+             </form>
+
+            </ul>
+          </li>
+
+
+     {% else %}
+          <li class="nav-item">
+                 <a class="nav-link" href="/ride/bedriver">Become Driver</a>
+          </li>
+
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">My</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/ride/my">My info</a></li>
+              <li><a class="dropdown-item" href="/ride/edit">Edit My</a></li>
+
+
+            </ul>
+          </li>
+
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">User Operation</a>
+            <ul class="dropdown-menu">
+
+            <form class='form-horizontal' action="/ride/my/" method="post">
+                {% csrf_token %}
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                           <button type="submit" class="btn btn-primary " name="submit_ride" >Submit Ride</button>
+                        </div>
+                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                           <button type="submit" class="btn btn-primary " name="u_list" >Belonging Order</button>
+                        </div>
+                          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                           <button type="submit" class="btn btn-primary " name="u_search_list" >Search Ride</button>
+                        </div>
+             </form>
+
+
+
+
+
+            </ul>
+          </li>
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+    {% if request.session.is_login %}
+         {% if my.is_driver %}
+              <h1>Hi,Driver {{ request.session.user_name }}！</h1>
+             <h1>Welcome Back！</h1>
+             <h1>You can do some Driver Operations</h1>
+         {% else %}
+              <h1>Hi,User {{ request.session.user_name }}！</h1>
+             <h1>Welcome Back！</h1>
+             <h1>You can do some User Operations</h1>
+
+         {% endif %}
+
+    {% else %}
+    <h1>You are not logged in, please log in or register!</h1>
+    {% endif %}
+
+{% endblock %}

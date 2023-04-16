@@ -1,0 +1,16 @@
+Danger Log
+Hw1--Django Web-App: Ride Sharing Service
+
+Puyang Xu(px16)
+Jian Xiao(jx133)
+
+1.	When a user requests a ride, they may give an invalid value(eg. a non-existent address). But we can’t judge whether or not it’s valid so far. Also, the format of the input should be standardized. In the searching function, there are same problems.
+2.	For our forms, the value of the attribute ‘required’ may have no influence on whether or not this value is required. We think that the ‘blank’ in models controls that instead. But this attribute may have other potential influence we are not aware of.
+3.	Sharers can not modify the ride once they are join. This is strange because it means they can not cancel too. But a sharer shouldn’t be able to modify any information since she is not the owner of the ride.
+4.	When a user want to join the ride, they can join whatever ride that matches their search conditions. However, the capacity of the ride should be checked. Otherwise, the vehicle may not be able to carry that many people.
+5.	Log-in function is not that secure. We do not limit the maximum time of inputting wrong password. Also the name of the user should be checked. An invalid username(eg. the one that spells wrong or haven’t registered yet) may cause some problems.
+6.	In our layout, every time the user wants a new operation, she needs to go back to the home page by clicking the button in the navigation bar. Otherwise, the website may not enter the right url and the operation may fail.
+7.	There is no limitation when a driver accepts every order. That may cause chaos under some circumstances. For instance, a driver can even accept his own order placed as the role of a user!
+8.	A ride can be accepted by many drivers instead of only one driver. So the driver and vehicle in some orders may not be the exact one because of overwrite.
+9.	A driver can accept orders that their arrival time are overlapped. The driver is not able to finish all of them the same time.
+10.	A sharer can request as many ride as she wants. So she may have many orders that has the same destination and arrival time. That means there may be some drivers that would accept those redundant orders.

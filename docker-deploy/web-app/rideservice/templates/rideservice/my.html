@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}My infor{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>About my</h1>
+     {% if my.is_driver %}
+                 <h1>Hi,Driver</h1>\
+         {% else %}
+          <h1>Hi,User</h1>\
+
+            {% endif %}
+
+
+
+    <div class="row">
+        <div class="col-md-6" >
+
+
+
+            <form class='form-horizontal' action="/ride/my/" method="post">
+            {% csrf_token %}
+             <div class="row">
+                <div class="col-md-4 text-right"><span>Username:</span></div>
+                <div class="col-md-8 text-left">{{my.name}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>Email:</span></div>
+                <div class="col-md-8 text-left">{{my.email}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>Sex:</span></div>
+                <div class="col-md-8 text-left">{{my.sex}}</div>
+            </div>
+                {% if my.is_driver %}
+             <div class="row">
+                <div class="col-md-4 text-right"><span>Vehicle Type:</span></div>
+                <div class="col-md-8 text-left">{{my.vehicle.type}}</div>
+             </div>
+              <div class="row">
+                <div class="col-md-4 text-right"><span>Vehicle License Number:</span></div>
+                <div class="col-md-8 text-left">{{my.vehicle.license_num}}</div>
+             </div>
+             <div class="row">
+                <div class="col-md-4 text-right"><span>Vehicle Capacity:</span></div>
+                <div class="col-md-8 text-left">{{my.vehicle.capacity}}</div>
+             </div>
+             <div class="row">
+                <div class="col-md-4 text-right"><span>Vehicle Other Info:</span></div>
+                <div class="col-md-8 text-left">{{my.vehicle.otherInfo}}</div>
+             </div>
+
+
+
+                {% endif %}
+
+
+
+          </form>
+
+        </div>
+
+    </div>
+{% if messages %}
+<script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+
+</div>
+{% endblock %}

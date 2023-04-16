@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmed Order List{% endblock %}
+
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>Confirmed Order List</h1>
+
+
+
+
+
+     {% for d_item in d_list %}
+
+        <div class="list-group">
+
+          <a href="/ride/d_list/{{ d_item.id }}/" class="list-group-item list-group-item-action">Destination:{{ d_item.destination }} Owner:{{ d_item.owner.name }}</a>
+
+        </div>
+
+
+    {% endfor %}
+
+</div>
+{% endblock %}

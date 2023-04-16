@@ -1,0 +1,42 @@
+{#login/templates/login/register.html#}
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-20 col-md-offset-6">
+          <form class='form-login' action="/ride/d_search/" method="post">
+
+
+
+              {% csrf_token %}
+
+              <h2 class="text-center">Driver Search</h2>
+              <div class="form-group">
+                  {{ search_form.type.label_tag }}
+                  {{ search_form.type}}
+              </div>
+              <div class="form-group">
+                  {{ search_form.capacity.label_tag }}
+                  {{ search_form.capacity }}
+              </div>
+              <div class="form-group">
+                  {{ search_form.otherInfo.label_tag }}
+                  {{ search_form.otherInfo }}
+              </div>
+
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                   <button type="reset" class="btn btn-success me-md-2">Reset</button>
+                   <button type="submit" class="btn btn-primary ">Commit</button>
+                </div>
+
+          </form>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}

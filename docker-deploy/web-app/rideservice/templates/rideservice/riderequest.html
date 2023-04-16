@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ride Request{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+       <div class="col-md-20 col-md-offset-6">
+            <form class='form-login' action = "/ride/riderequest/" method = "post">
+                {% csrf_token %}
+                {% if message%}
+                    <div class = "alert alert-warning">{{ message }}</div>
+                {% endif %}
+                <h2 class="text-center">Request a new ride</h2>
+                <div class="form-group">
+                    {{ UR_form.destination.label_tag }}
+                    {{ UR_form.destination}}
+                </div>
+                <div class="form-group">
+                    {{ UR_form.arrival_time.label_tag }}
+                    {{ UR_form.arrival_time}}
+                </div>
+                <div class="form-group">
+                    {{ UR_form.capacity.label_tag }}
+                    {{ UR_form.capacity}}
+                </div>
+                <div class="form-group">
+                    {{ UR_form.vehicle_type.label_tag }}
+                    {{ UR_form.vehicle_type}}
+                </div>
+                <div class="form-group">
+                    {{ UR_form.special_request.label_tag }}
+                    {{ UR_form.special_request}}
+                </div>
+
+                <div class="form-group">
+                    {{ UR_form.is_Share.label_tag }}
+                    {{ UR_form.is_Share}}
+                </div>
+
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
